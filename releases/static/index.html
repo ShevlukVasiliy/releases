@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="releases-token" content="__TOKEN__"><title>Releases</title><link rel="stylesheet" href="/app.css"><script src="/app.js" defer></script></head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <header class="brand">Releases</header>
+  <div class="side-heading"><span>АРТИСТЫ</span><span id="artistCount">0</span></div>
+  <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Найти артиста" aria-label="Найти артиста"></label>
+  <div class="list-tools"><button class="text-button" id="selectVisible">Выбрать показанных</button><button class="text-button" id="clearSelection">Сбросить</button></div>
+  <div id="artists" class="artists" aria-label="Список артистов"></div>
+  <footer class="side-footer"><button class="secondary wide" id="scan">Обновить медиатеку</button><small id="scanStatus" aria-live="polite">Ещё не сканировалась</small></footer>
+</aside>
+<main class="main">
+  <header class="topbar"><strong>Медиатека</strong><div class="top-actions"><button class="secondary" id="openDownloads">Загрузить по ссылкам</button><button class="icon-button" id="openSettings" aria-label="Настройки" title="Настройки">⚙</button></div></header>
+  <div class="content">
+    <div class="heading"><div><h1>Недостающие релизы</h1></div><button id="check" class="primary">Проверить артистов</button></div>
+    <div class="toolbar"><div class="filters"><label><input id="noSingles" type="checkbox"> Без синглов</label><label><input id="noRemixes" type="checkbox"> Без ремиксов</label><label class="year">С <input id="since" type="number" min="1900" max="2100" placeholder="года" aria-label="Начиная с года"></label></div><span id="selectionInfo">Ничего не выбрано</span></div>
+    <div class="results-heading"><h2>Результаты <span id="resultCount"></span></h2><div class="result-actions"><button class="text-button" id="selectReleases">Выбрать все релизы</button><button class="text-button" id="copyLinks">Скопировать ссылки</button><button class="text-button" id="exportReport">Отчёт</button><button class="secondary" id="downloadSelected" disabled>Скачать выбранные</button><span id="checkStatus" aria-live="polite"></span></div></div>
+    <div id="results" class="results"><div class="empty"><p>Выберите артистов и нажмите «Проверить артистов».</p></div></div>
+    <section class="queue-section"><div class="results-heading"><h2>Очередь</h2><span id="queueCount"></span></div><div id="queue" class="queue-empty">Задач пока нет</div></section>
+  </div>
+</main></div>
+<dialog id="settings"><form method="dialog"><div class="dialog-head"><div><h2>Настройки</h2><p>Подключение и перенос данных</p></div><button class="icon-button" aria-label="Закрыть">×</button></div></form><div class="dialog-body"><label class="field-label" for="yandexToken">Токен Яндекс Музыки</label><div class="inline"><input type="password" id="yandexToken" autocomplete="off" placeholder="Вставь токен"><button class="primary" id="saveToken">Сохранить</button></div><p class="hint">Токен хранится в системном хранилище ключей. Действительность проверяется при обращении к сервису.</p><hr><h3>Из предыдущей версии</h3><p class="hint">Перенести исключения и сопоставления после сканирования медиатеки.</p><button class="secondary" id="legacy">Перенести настройки</button><hr><h3>Теги загруженных файлов</h3><p class="hint">Проверить папку загрузок. Перед изменением файлов будет показан список исправлений.</p><button class="secondary" id="previewFixes">Проверить теги</button><hr><h3>Порядок треков в Music</h3><p class="hint">Сверить порядок с Яндекс Музыкой и просмотреть изменения перед записью. Только macOS.</p><button class="secondary" id="previewOrder">Сверить порядок</button></div></dialog>
+<dialog id="downloads"><form method="dialog"><div class="dialog-head"><div><h2>Загрузить релизы</h2><p>Ссылки на альбомы или их ID</p></div><button class="icon-button" aria-label="Закрыть">×</button></div></form><div class="dialog-body"><label class="field-label" for="links">Список альбомов</label><textarea id="links" rows="7" placeholder="https://music.yandex.ru/album/…&#10;или ID альбома"></textarea><p class="hint">По одной ссылке или ID на строку.</p><button class="primary" id="downloadLinks">Добавить в очередь</button></div></dialog>
+<dialog id="matchDialog"><form method="dialog"><div class="dialog-head"><div><h2>Сопоставить артиста</h2><p id="matchName"></p></div><button class="icon-button" aria-label="Закрыть">×</button></div></form><div class="dialog-body"><label class="field-label" for="matchId">ID артиста в Яндекс Музыке</label><div class="inline"><input id="matchId" inputmode="numeric" placeholder="Например, 12345"><button id="saveMatch" class="primary">Сохранить</button></div><p class="hint">ID находится в ссылке после /artist/.</p></div></dialog>
+<div id="notice" class="notice" role="status" hidden></div>
+</body></html>
